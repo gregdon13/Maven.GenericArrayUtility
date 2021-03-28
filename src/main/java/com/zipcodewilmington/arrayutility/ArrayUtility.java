@@ -13,6 +13,8 @@ public class ArrayUtility<E extends Object> {
         this.inputArray = inputArray;
     }
 
+    public ArrayUtility() {}
+
     public Integer countDuplicatesInMerge(E[] arrayToMerge, E valueToEvaluate) {
         Integer counter = 0;
         for (int i = 0; i < arrayToMerge.length; i++) {
@@ -67,14 +69,7 @@ public class ArrayUtility<E extends Object> {
                 counter++;
             }
         }
-        ArrayList<E> tempList = new ArrayList<>();
-        for (int i = 0; i < inputArray.length; i++) {
-            if (!inputArray[i].equals(valueToRemove)) {
-                tempList.add(inputArray[i]);
-            }
-        }
-
-        return (E[]) tempList.toArray();
+        return null;
     }
 
     public E[] mergeArrays(E[] arrayToMerge) {
@@ -90,5 +85,9 @@ public class ArrayUtility<E extends Object> {
             newIndex++;
         }
         return (E[]) newArr;
+    }
+
+    public Class<?> getType(E[] typeArr) {
+       return typeArr.getClass().getComponentType();
     }
 }

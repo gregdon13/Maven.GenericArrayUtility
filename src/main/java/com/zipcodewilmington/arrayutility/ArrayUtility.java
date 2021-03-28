@@ -1,12 +1,13 @@
 package com.zipcodewilmington.arrayutility;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by leon on 3/6/18.
  */
-public class ArrayUtility<E extends Object> {
+public class ArrayUtility<E> {
     E[] inputArray;
 
     public ArrayUtility(E[] inputArray) {
@@ -69,7 +70,15 @@ public class ArrayUtility<E extends Object> {
                 counter++;
             }
         }
-        return null;
+        E[] output = Arrays.copyOf(inputArray, inputArray.length - counter);
+        int newIndex = 0;
+        for (int i = 0; i < inputArray.length; i++) {
+            if (!inputArray[i].equals(valueToRemove)) {
+                output[newIndex] = inputArray[i];
+                newIndex++;
+            }
+        }
+        return output;
     }
 
     public E[] mergeArrays(E[] arrayToMerge) {
@@ -87,7 +96,9 @@ public class ArrayUtility<E extends Object> {
         return (E[]) newArr;
     }
 
-    public Class<?> getType(E[] typeArr) {
-       return typeArr.getClass().getComponentType();
+    public E[] conversionNewLength(E[] someArr, int numToSubtract) {
+        Object[] newArr = new Object[someArr.length - numToSubtract];
+        return (E[]) newArr;
     }
+
 }

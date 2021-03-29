@@ -1,8 +1,6 @@
 package com.zipcodewilmington.arrayutility;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by leon on 3/6/18.
@@ -23,11 +21,7 @@ public class ArrayUtility<E> {
                 counter++;
             }
         }
-        for (int j = 0; j < inputArray.length; j++) {
-            if (inputArray[j] == valueToEvaluate) {
-                counter++;
-            }
-        }
+        counter += getNumberOfOccurrences(valueToEvaluate);
         return counter;
     }
 
@@ -64,12 +58,7 @@ public class ArrayUtility<E> {
     }
 
     public E[] removeValue(E valueToRemove) {
-        int counter = 0;
-        for (E obj : inputArray) {
-            if (obj.equals(valueToRemove)) {
-                counter++;
-            }
-        }
+        int counter = getNumberOfOccurrences(valueToRemove);
         E[] output = Arrays.copyOf(inputArray, inputArray.length - counter);
         int newIndex = 0;
         for (int i = 0; i < inputArray.length; i++) {
@@ -84,7 +73,7 @@ public class ArrayUtility<E> {
     public E[] mergeArrays(E[] arrayToMerge) {
         int fal = inputArray.length;
         int sal = arrayToMerge.length;
-        Object[] newArr = new Object[fal + sal];
+        E[] newArr = Arrays.copyOf(inputArray, (fal + sal));
         for (int i = 0; i < fal; i++) {
             newArr[i] = inputArray[i];
         }
@@ -93,12 +82,7 @@ public class ArrayUtility<E> {
             newArr[newIndex] = arrayToMerge[j];
             newIndex++;
         }
-        return (E[]) newArr;
-    }
-
-    public E[] conversionNewLength(E[] someArr, int numToSubtract) {
-        Object[] newArr = new Object[someArr.length - numToSubtract];
-        return (E[]) newArr;
+        return newArr;
     }
 
 }
